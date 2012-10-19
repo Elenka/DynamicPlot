@@ -24,6 +24,7 @@
 		5303CB8B163055B300BB7F93 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 5303CB8A163055B300BB7F93 /* second.png */; };
 		5303CB8D163055B400BB7F93 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5303CB8C163055B400BB7F93 /* second@2x.png */; };
 		5303CBE416306B8100BB7F93 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5303CBE316306B8100BB7F93 /* libCorePlot-CocoaTouch.a */; };
+		5303CBF716317ED100BB7F93 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5303CBF616317ED100BB7F93 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,6 +130,7 @@
 		5303CBE116306B8100BB7F93 /* NSDecimalNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDecimalNumberExtensions.h; sourceTree = "<group>"; };
 		5303CBE216306B8100BB7F93 /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
 		5303CBE316306B8100BB7F93 /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
+		5303CBF616317ED100BB7F93 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5303CBF716317ED100BB7F93 /* QuartzCore.framework in Frameworks */,
 				5303CB66163055B300BB7F93 /* UIKit.framework in Frameworks */,
 				5303CB68163055B300BB7F93 /* Foundation.framework in Frameworks */,
 				5303CB6A163055B300BB7F93 /* CoreGraphics.framework in Frameworks */,
@@ -166,6 +169,7 @@
 		5303CB64163055B300BB7F93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5303CBF616317ED100BB7F93 /* QuartzCore.framework */,
 				5303CB65163055B300BB7F93 /* UIKit.framework */,
 				5303CB67163055B300BB7F93 /* Foundation.framework */,
 				5303CB69163055B300BB7F93 /* CoreGraphics.framework */,
@@ -416,6 +420,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -436,7 +442,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

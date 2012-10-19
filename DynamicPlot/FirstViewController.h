@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CorePlot-CocoaTouch.h"
 
-@interface FirstViewController : UIViewController
+@interface FirstViewController : UIViewController <CPTPlotDataSource, CPTAxisDelegate>{
+    NSMutableArray *plotData;
+    
+}
+
+-(void)dataGenerator;
+
+
+
+
 
 @end
