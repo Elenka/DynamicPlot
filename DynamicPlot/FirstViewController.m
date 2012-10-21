@@ -28,9 +28,13 @@
 }
 
 -(void)dataGenerator{
-    if ([]) {
-        <#statements#>
+    
+    if ([plotData count]>20) {
+        [plotData removeObjectAtIndex:1];
+        
     }
+    
+    [plotData addObject:[ ]]
     
     
 }
