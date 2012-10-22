@@ -8,6 +8,10 @@
 
 #import "FirstViewController.h"
 
+
+#define kUpdateFrequency	60.0
+#define lastEntrie 40.0
+
 @interface FirstViewController ()
 
 @end
@@ -18,46 +22,8 @@
 {
     [super viewDidLoad];
     [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(dataGenerator) userInfo:nil repeats:YES];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)dataGenerator{
-    
-    if ([plotData count]>20) {
-        [plotData removeObjectAtIndex:1];
-        
-    }
-    [plotData addObject: [NSString stringWithFormat:@"%.2d",rand() / RAND_MAX]];
-    NSLog(@"%@",plotData);
-    
-}
-
-
-
-
-
-
-
-
-#define kUpdateFrequency	60.0
-#define lastEntrie 40.0
-
-
-
-
-// Implement viewDidLoad to do additional setup after loading the view.
--(void)viewDidLoad
-{
-	[super viewDidLoad];
     
     NSLog(@"---graph View");
-    userDefaults = [NSUserDefaults standardUserDefaults];
     
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *) GraphView;
     
@@ -138,20 +104,41 @@
     
 	// Add some initial data
     //contentArray = [[NSMutableArray alloc] initWithCapacity:55];
-	contentArray = [[NSMutableArray alloc] init];
-	NSUInteger i;
-	for ( i = 0; i < 40; i++ ) {
-		id x = [NSNumber numberWithFloat:1 + i * 0.05];
-		id y = [NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2];
-		[contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
-	}
-	self.dataForPlot = contentArray;
+//	contentArray = [[NSMutableArray alloc] init];
+//	NSUInteger i;
+//	for ( i = 0; i < 40; i++ ) {
+//		id x = [NSNumber numberWithFloat:1 + i * 0.05];
+//		id y = [NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2];
+//		[contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
+//	}
+//	self.dataForPlot = contentArray;
     
 #ifdef PERFORMANCE_TEST
 	[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(changePlotRange) userInfo:nil repeats:YES];
 #endif
+
+	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)dataGenerator{
+    
+    if ([plotData count]>20) {
+        [plotData removeObjectAtIndex:1];
+        
+    }
+    [plotData addObject: [NSString stringWithFormat:@"%.2d",rand() / RAND_MAX]];
+    NSLog(@"%@",plotData);
     
 }
+
+
+// Implement viewDidLoad to do additional setup after loading the view.
 
 
 /*
@@ -242,7 +229,7 @@
 
 
 
-
+/*
 
 -(void) accelerometerReciver:(NSNotification*)theNotice{
     [self graphDrow:( (CMAccelerometerData*)[theNotice.userInfo objectForKey:@"accel"] ).acceleration];
@@ -256,11 +243,11 @@
     [self graphDrow:acc];
 }
 
-
+*/
 -(void)viewDidUnload {
 	[super viewDidUnload];
 }
-
+/*
 // UIAccelerometerDelegate method, called when the device accelerates.
 -(void)graphDrow:(CMAcceleration)accelerationTemp {
     
@@ -274,7 +261,7 @@
     [graph reloadData];
 }
 
-
+*/
 
 
 
@@ -297,26 +284,8 @@
          object: nil];
     }
     
-    [[NSNotificationCenter defaultCenter]
-     addObserver: self
-     selector: @selector(warningPrint)
-     name: @"locationWarning"
-     object: nil];
-    
-    [[NSNotificationCenter defaultCenter]
-     addObserver: self
-     selector: @selector(warningPrintOFF)
-     name: @"locationWarningOFF"
-     object: nil];
-    
-    if ([myAppDelegate locationWarning]){
-        [self warningPrint];
-    }
-    if (([userDefaults stringForKey:@"login"] == nil) && ([userDefaults stringForKey:@"uid"] == nil) && !isGuideClosed) {
-        guide.hidden=NO;
-        guideLabel.hidden=NO;
-    }
-    
+        
+        
     //  [TestFlight passCheckpoint:@"Plot View Appear"];
     
 }
@@ -324,18 +293,7 @@
 -(void) viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:(BOOL)animated];
     
-    if ([myAppDelegate isGyroAvailable]) {
-        [[NSNotificationCenter defaultCenter]
-         removeObserver: self
-         name: @"motionNotification"
-         object: nil];
-    } else {
-        [[NSNotificationCenter defaultCenter]
-         removeObserver: self
-         name: @"accelNotification"
-         object: nil];
-    }
-    
+       
     //  [TestFlight passCheckpoint:@"Plot View Disappear"];
 }
 

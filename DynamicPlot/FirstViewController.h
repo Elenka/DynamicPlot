@@ -11,6 +11,8 @@
 
 @interface FirstViewController : UIViewController <CPTPlotDataSource, CPTAxisDelegate>{
     NSMutableArray *plotData;
+    CPTXYGraph *graph;    
+    IBOutlet UIView *GraphView;
     
 }
 
