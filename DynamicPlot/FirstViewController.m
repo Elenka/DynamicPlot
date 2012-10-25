@@ -160,13 +160,13 @@
 
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
 {
-	return [dataForPlot count];
+	return 51;/*[dataForPlot count]*/
 }
 
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
 {
 	NSString *key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
-	NSNumber *num = [[dataForPlot objectAtIndex:index] valueForKey:key];
+	NSNumber *num = [[plotData objectAtIndex:index] valueForKey:key];
     
 	// Green plot gets shifted above the blue
 	if ( [(NSString *)plot.identifier isEqualToString:@"Green Plot"] ) {
@@ -270,7 +270,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if ([myAppDelegate isGyroAvailable]) {
+ /*   if ([myAppDelegate isGyroAvailable]) {
         [[NSNotificationCenter defaultCenter]
          addObserver: self
          selector: @selector(motionReciver:)
@@ -283,7 +283,7 @@
          name: @"accelNotification"
          object: nil];
     }
-    
+  */  
         
         
     //  [TestFlight passCheckpoint:@"Plot View Appear"];
