@@ -8,7 +8,6 @@
 
 #import "FirstViewController.h"
 
-
 #define kUpdateFrequency	60.0
 #define lastEntrie 40.0
 
@@ -103,20 +102,8 @@
 	fadeInAnimation.toValue				= [NSNumber numberWithFloat:1.0];
 	[dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];
     
-	// Add some initial data
-   NSMutableArray *contentArray = [[NSMutableArray alloc] initWithCapacity:55];
-	contentArray = [[NSMutableArray alloc] init];
-	NSUInteger i;
-	for ( i = 0; i < 40; i++ ) {
-		id x = [NSNumber numberWithFloat:1+i * 0.05];
-		id y = [NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2];
-		[contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
-	}
-	self.dataForPlot = contentArray;
+	
     
-#ifdef PERFORMANCE_TEST
-	[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(changePlotRange) userInfo:nil repeats:YES];
-#endif
 
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -128,14 +115,25 @@
 }
 
 -(void)dataGenerator{
-    /*
-    if ([plotData count]>20) {
-        [plotData removeObjectAtIndex:1];
+    
+    // Add some initial data
+    NSMutableArray *contentArray = [[NSMutableArray alloc] initWithCapacity:55];
+	contentArray = [[NSMutableArray alloc] init];
+	NSUInteger i;
+	for ( i = 0; i < 40; i++ ) {
+		id x = [NSNumber numberWithFloat:1+i * 0.05];
+		id y = [NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2];
+		[contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
+	}
+	self.dataForPlot = contentArray;
+    
+    if ([dataForPlot count]<40) {
+        NSLog(@"<40");
+    }
+    else {
         
     }
-    [plotData addObject: [NSString stringWithFormat:@"%.2d",rand() / RAND_MAX]];
-    NSLog(@"%@",plotData);
-   */
+
     
     NSLog(@"%@",dataForPlot);
     [dataForPlot removeObjectAtIndex:1];
@@ -155,8 +153,8 @@
 	// Setup plot space
 	CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
     
-	plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat(3.0 + 2.0 * rand() / RAND_MAX)];
-	plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat(3.0 + 2.0 * rand() / RAND_MAX)];
+	plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.1) length:CPTDecimalFromFloat(3.0)];
+    	//plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat(3.0 + 2.0 * rand() / RAND_MAX)];
 }
 
 
@@ -233,8 +231,6 @@
 	return NO;
 }
 
-
-
 /*
 
 -(void) accelerometerReciver:(NSNotification*)theNotice{
@@ -254,31 +250,16 @@
 	[super viewDidUnload];
 }
 
-
-
-
-
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
 
-    
 }
 
 -(void) viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:(BOOL)animated];
 
 }
-
-
-
-
-
-
-
-
-
 
 #pragma mark - View lifecycle
 
