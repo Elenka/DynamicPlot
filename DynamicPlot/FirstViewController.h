@@ -17,7 +17,7 @@
 }
 
 -(void)dataGenerator;
-
+@property (readwrite, retain, nonatomic) NSMutableArray *dataForPlot;
 
 
 

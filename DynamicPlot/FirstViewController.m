@@ -17,6 +17,7 @@
 @end
 
 @implementation FirstViewController
+@synthesize dataForPlot;
 
 - (void)viewDidLoad
 {
@@ -103,15 +104,15 @@
 	[dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];
     
 	// Add some initial data
-    //contentArray = [[NSMutableArray alloc] initWithCapacity:55];
-//	contentArray = [[NSMutableArray alloc] init];
-//	NSUInteger i;
-//	for ( i = 0; i < 40; i++ ) {
-//		id x = [NSNumber numberWithFloat:1 + i * 0.05];
-//		id y = [NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2];
-//		[contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
-//	}
-//	self.dataForPlot = contentArray;
+   NSMutableArray *contentArray = [[NSMutableArray alloc] initWithCapacity:55];
+	contentArray = [[NSMutableArray alloc] init];
+	NSUInteger i;
+	for ( i = 0; i < 40; i++ ) {
+		id x = [NSNumber numberWithFloat:1+i * 0.05];
+		id y = [NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2];
+		[contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
+	}
+	self.dataForPlot = contentArray;
     
 #ifdef PERFORMANCE_TEST
 	[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(changePlotRange) userInfo:nil repeats:YES];
@@ -127,14 +128,18 @@
 }
 
 -(void)dataGenerator{
-    
+    /*
     if ([plotData count]>20) {
         [plotData removeObjectAtIndex:1];
         
     }
     [plotData addObject: [NSString stringWithFormat:@"%.2d",rand() / RAND_MAX]];
     NSLog(@"%@",plotData);
+   */
     
+    NSLog(@"%@",dataForPlot);
+    [dataForPlot removeObjectAtIndex:1];
+    [graph reloadData];
 }
 
 
@@ -160,13 +165,14 @@
 
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
 {
-	return 51;/*[dataForPlot count]*/
+	return [dataForPlot count];
 }
 
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
 {
+	
 	NSString *key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
-	NSNumber *num = [[plotData objectAtIndex:index] valueForKey:key];
+	NSNumber *num = [[dataForPlot objectAtIndex:index] valueForKey:key];
     
 	// Green plot gets shifted above the blue
 	if ( [(NSString *)plot.identifier isEqualToString:@"Green Plot"] ) {
@@ -247,21 +253,7 @@
 -(void)viewDidUnload {
 	[super viewDidUnload];
 }
-/*
-// UIAccelerometerDelegate method, called when the device accelerates.
--(void)graphDrow:(CMAcceleration)accelerationTemp {
-    
-    float newPoint = (sqrt(pow(acceleration.x, 2))+pow(acceleration.y, 2)+pow(acceleration.z, 2));
-    [contentArray removeObjectAtIndex:0];
-    id x = [NSNumber numberWithFloat:1 + 1 * 0.05];
-    id y = [NSNumber numberWithFloat: newPoint];
-    [contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
-    // NSLog(@"new point %f",newPoint);
-    //[contentArray addObject: [NSNumber numberWithDouble:newPoint]];
-    [graph reloadData];
-}
 
-*/
 
 
 
@@ -270,31 +262,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
- /*   if ([myAppDelegate isGyroAvailable]) {
-        [[NSNotificationCenter defaultCenter]
-         addObserver: self
-         selector: @selector(motionReciver:)
-         name: @"motionNotification"
-         object: nil];
-    } else {
-        [[NSNotificationCenter defaultCenter]
-         addObserver: self
-         selector: @selector(accelerometerReciver:)
-         name: @"accelNotification"
-         object: nil];
-    }
-  */  
-        
-        
-    //  [TestFlight passCheckpoint:@"Plot View Appear"];
+
     
 }
 
 -(void) viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:(BOOL)animated];
-    
-       
-    //  [TestFlight passCheckpoint:@"Plot View Disappear"];
+
 }
 
 
