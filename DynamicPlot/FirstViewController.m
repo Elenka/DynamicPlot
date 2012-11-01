@@ -128,15 +128,18 @@
     
     // Add some initial data
     
+   // NSLog(@"size yCrd = %i", [yCrd count]);
+    [yCrd removeObjectAtIndex:0];
+   // NSLog(@"size yCrd = %i", [yCrd count]);
     [yCrd addObject:[NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2]];
-    
-	for (NSInteger i = 0; i < 40; i++ ) {
-        id y = [yCrd objectAtIndex:i+1];
+    [contentArray removeAllObjects];
+	for (NSInteger i = 0; i < 39; i++ ) {
+       id y =[yCrd objectAtIndex:i+1];
 		[contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[xCrd objectAtIndex:i], @"x", y, @"y", nil]];
 	}
     
 	self.dataForPlot = contentArray;
-    NSLog(@"%@",dataForPlot);
+   // NSLog(@"%@",dataForPlot);
     [graph reloadData];
 }
 
