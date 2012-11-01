@@ -21,7 +21,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(dataGenerator) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(dataGenerator) userInfo:nil repeats:YES];
+    contentArray = [[NSMutableArray alloc] initWithCapacity:55];
+    
+    xCrd = [[NSMutableArray alloc] init];
+    yCrd = [[NSMutableArray alloc] init];
+	for (NSInteger i = 0; i < 40; i++ ) {
+		id xi = [NSNumber numberWithFloat:1+i * 0.05];
+        id yi = [NSNumber numberWithFloat:1];
+		[xCrd addObject: xi];
+        [yCrd addObject:yi];
+	}
     
     NSLog(@"---graph View");
     
@@ -117,26 +127,16 @@
 -(void)dataGenerator{
     
     // Add some initial data
-    NSMutableArray *contentArray = [[NSMutableArray alloc] initWithCapacity:55];
-	contentArray = [[NSMutableArray alloc] init];
-	NSUInteger i;
-	for ( i = 0; i < 40; i++ ) {
-		id x = [NSNumber numberWithFloat:1+i * 0.05];
-		id y = [NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2];
-		[contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
+    
+    [yCrd addObject:[NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2]];
+    
+	for (NSInteger i = 0; i < 40; i++ ) {
+        id y = [yCrd objectAtIndex:i+1];
+		[contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[xCrd objectAtIndex:i], @"x", y, @"y", nil]];
 	}
+    
 	self.dataForPlot = contentArray;
-    
-    if ([dataForPlot count]<40) {
-        NSLog(@"<40");
-    }
-    else {
-        
-    }
-
-    
     NSLog(@"%@",dataForPlot);
-    [dataForPlot removeObjectAtIndex:1];
     [graph reloadData];
 }
 

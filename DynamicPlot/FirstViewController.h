@@ -10,10 +10,12 @@
 #import "CorePlot-CocoaTouch.h"
 
 @interface FirstViewController : UIViewController <CPTPlotDataSource, CPTAxisDelegate>{
-    NSMutableArray *plotData;
+    //NSMutableArray *plotData;
     CPTXYGraph *graph;    
     IBOutlet UIView *GraphView;
-    
+    NSMutableArray *contentArray;
+    NSMutableArray *xCrd;
+    NSMutableArray *yCrd;
 }
 
 -(void)dataGenerator;
