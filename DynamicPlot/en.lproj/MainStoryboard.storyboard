@@ -25,11 +25,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="M1R-7p-fNF" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="7A2-r8-LeO"/>
+                            <constraint firstItem="M1R-7p-fNF" firstAttribute="top" secondItem="20" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Agy-gh-qyR"/>
+                            <constraint firstItem="M1R-7p-fNF" firstAttribute="centerY" secondItem="16" secondAttribute="centerY" type="default" id="NkP-CN-KV0"/>
                             <constraint firstAttribute="trailing" secondItem="20" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Qxj-1L-2Yh"/>
                             <constraint firstItem="20" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Ty9-wx-CyI"/>
-                            <constraint firstAttribute="bottom" secondItem="M1R-7p-fNF" secondAttribute="bottom" constant="124" id="k3b-WQ-mHC"/>
                             <constraint firstItem="20" firstAttribute="top" secondItem="16" secondAttribute="top" constant="20" symbolic="YES" type="default" id="tmS-Ax-h10"/>
-                            <constraint firstItem="M1R-7p-fNF" firstAttribute="top" secondItem="16" secondAttribute="top" constant="125" id="uwp-SR-bZY"/>
                             <constraint firstItem="M1R-7p-fNF" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="vsq-3x-kN1"/>
                         </constraints>
                     </view>
