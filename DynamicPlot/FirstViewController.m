@@ -24,6 +24,8 @@
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(dataGenerator) userInfo:nil repeats:YES];
     contentArray = [[NSMutableArray alloc] initWithCapacity:55];
     
+   
+    
     xCrd = [[NSMutableArray alloc] init];
     yCrd = [[NSMutableArray alloc] init];
 	for (NSInteger i = 0; i < 40; i++ ) {
@@ -36,6 +38,8 @@
     NSLog(@"---graph View");
     
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *) GraphView;
+    hostingView.allowPinchScaling = NO;
+    hostingView.userInteractionEnabled = NO;
     
     graph = [[CPTXYGraph alloc] initWithFrame:hostingView.bounds];
 	CPTTheme *theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
@@ -56,34 +60,35 @@
     //графа по х от, сколько
 	plotSpace.xRange				= [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.0) length:CPTDecimalFromFloat(2.0)];
     //графа по у от, сколько
-	plotSpace.yRange				= [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat(3.0)];
+	plotSpace.yRange				= [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat(4.0)];
     
 	// Axes
 	CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
 	CPTXYAxis *x		  = axisSet.xAxis;
-    //
+    //деление
 	x.majorIntervalLength		  = CPTDecimalFromString(@"0.5");
+    //где проходит ось х относительно у
 	x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
-	x.minorTicksPerInterval		  = 2;
-	NSArray *exclusionRanges = [NSArray arrayWithObjects:
-								[CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(2.99) length:CPTDecimalFromFloat(0.5)],
-								[CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.00) length:CPTDecimalFromFloat(0.5)],
-								[CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(2.99) length:CPTDecimalFromFloat(0.5)],
-								nil];
-	x.labelExclusionRanges = exclusionRanges;
     
+	x.minorTicksPerInterval		  = 0;
+    
+    CPTMutableLineStyle *tickLineStyle = [CPTMutableLineStyle lineStyle];
+    tickLineStyle.lineColor = [CPTColor whiteColor];
+    tickLineStyle.lineWidth = 2.0f;
+    CPTMutableLineStyle *gridLineStyle = [CPTMutableLineStyle lineStyle];
+    tickLineStyle.lineColor = [CPTColor blackColor];
+    tickLineStyle.lineWidth = 1.0f;
+    
+    // 2 - Get axis set
+  //  CPTXYAxisSet *axisSet = (CPTXYAxisSet *) self.hostView.hostedGraph.axisSet;
+        
 	CPTXYAxis *y = axisSet.yAxis;
+    //деление
 	y.majorIntervalLength		  = CPTDecimalFromString(@"2");
 	y.minorTicksPerInterval		  = 5;
-	y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"2");
-	exclusionRanges				  = [NSArray arrayWithObjects:
-									 [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(4.99) length:CPTDecimalFromFloat(0.02)],
-									 [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.00) length:CPTDecimalFromFloat(0.02)],
-									 [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(4.99) length:CPTDecimalFromFloat(0.02)],
-									 nil];
-	y.labelExclusionRanges = exclusionRanges;
-	y.delegate			   = self;
-    
+    //где проходит ось у относительно х
+	//y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"2");
+    //y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"3");
     
 	// Create a green plot area
     CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
