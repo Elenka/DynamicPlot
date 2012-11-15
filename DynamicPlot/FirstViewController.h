@@ -16,6 +16,7 @@
     NSMutableArray *contentArray;
     NSMutableArray *xCrd;
     NSMutableArray *yCrd;
+    CPTGraphHostingView *hostingView;
 }
 
 -(void)dataGenerator;
