@@ -25,6 +25,9 @@
 		5303CB8D163055B400BB7F93 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5303CB8C163055B400BB7F93 /* second@2x.png */; };
 		5303CBE416306B8100BB7F93 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5303CBE316306B8100BB7F93 /* libCorePlot-CocoaTouch.a */; };
 		5303CBF716317ED100BB7F93 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5303CBF616317ED100BB7F93 /* QuartzCore.framework */; };
+		5354893F166CE3C1000506E1 /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5354893C166CE3C1000506E1 /* GraphView.m */; };
+		53548940166CE3C1000506E1 /* GraphViewCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5354893E166CE3C1000506E1 /* GraphViewCore.m */; };
+		5384DBD616624C0300901DE2 /* graphback.png in Resources */ = {isa = PBXBuildFile; fileRef = 5384DBD516624C0300901DE2 /* graphback.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +134,11 @@
 		5303CBE216306B8100BB7F93 /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
 		5303CBE316306B8100BB7F93 /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
 		5303CBF616317ED100BB7F93 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5354893B166CE3C1000506E1 /* GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphView.h; sourceTree = "<group>"; };
+		5354893C166CE3C1000506E1 /* GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphView.m; sourceTree = "<group>"; };
+		5354893D166CE3C1000506E1 /* GraphViewCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewCore.h; sourceTree = "<group>"; };
+		5354893E166CE3C1000506E1 /* GraphViewCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewCore.m; sourceTree = "<group>"; };
+		5384DBD516624C0300901DE2 /* graphback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graphback.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +188,7 @@
 		5303CB6B163055B300BB7F93 /* DynamicPlot */ = {
 			isa = PBXGroup;
 			children = (
+				5354893A166CE3C1000506E1 /* Source */,
 				5303CB9316306B8100BB7F93 /* CorePlotHeaders */,
 				5303CBE316306B8100BB7F93 /* libCorePlot-CocoaTouch.a */,
 				5303CB74163055B300BB7F93 /* AppDelegate.h */,
@@ -201,6 +210,7 @@
 		5303CB6C163055B300BB7F93 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5384DBD516624C0300901DE2 /* graphback.png */,
 				5303CB6D163055B300BB7F93 /* DynamicPlot-Info.plist */,
 				5303CB6E163055B300BB7F93 /* InfoPlist.strings */,
 				5303CB71163055B300BB7F93 /* main.m */,
@@ -298,6 +308,18 @@
 			path = CorePlotHeaders;
 			sourceTree = "<group>";
 		};
+		5354893A166CE3C1000506E1 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				5354893B166CE3C1000506E1 /* GraphView.h */,
+				5354893C166CE3C1000506E1 /* GraphView.m */,
+				5354893D166CE3C1000506E1 /* GraphViewCore.h */,
+				5354893E166CE3C1000506E1 /* GraphViewCore.m */,
+			);
+			name = Source;
+			path = "GraphView-master/Source";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -358,6 +380,7 @@
 				5303CB86163055B300BB7F93 /* first@2x.png in Resources */,
 				5303CB8B163055B300BB7F93 /* second.png in Resources */,
 				5303CB8D163055B400BB7F93 /* second@2x.png in Resources */,
+				5384DBD616624C0300901DE2 /* graphback.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +395,8 @@
 				5303CB76163055B300BB7F93 /* AppDelegate.m in Sources */,
 				5303CB82163055B300BB7F93 /* FirstViewController.m in Sources */,
 				5303CB89163055B300BB7F93 /* SecondViewController.m in Sources */,
+				5354893F166CE3C1000506E1 /* GraphView.m in Sources */,
+				53548940166CE3C1000506E1 /* GraphViewCore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +524,7 @@
 				5303CB92163055B400BB7F93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

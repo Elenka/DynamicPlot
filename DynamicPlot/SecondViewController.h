@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GraphView.h"
 
-@interface SecondViewController : UIViewController
+@interface SecondViewController : UIViewController{
+    
+}
 
+@property (strong, nonatomic) GraphView *graphView;
 @end

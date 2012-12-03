@@ -38,13 +38,16 @@
     NSLog(@"---graph View");
     
     hostingView = (CPTGraphHostingView *) GraphView;
-    hostingView.allowPinchScaling = NO;
-    hostingView.userInteractionEnabled = NO;
+  //!!  hostingView.allowPinchScaling = NO;
+  //!!  hostingView.userInteractionEnabled = NO;
     
     graph = [[CPTXYGraph alloc] initWithFrame:hostingView.bounds];
 	CPTTheme *theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
 	[graph applyTheme:theme];
-	
+    
+   
+    
+   // graph.imageOfLayer = [UIImage imageNamed:@"Default.png"];
 	hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
 	hostingView.hostedGraph		= graph;
     
@@ -60,15 +63,16 @@
     //графа по х от, сколько
 	plotSpace.xRange				= [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.0) length:CPTDecimalFromFloat(2.0)];
     //графа по у от, сколько
-	plotSpace.yRange				= [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat(4.0)];
+	plotSpace.yRange				= [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-1.0) length:CPTDecimalFromFloat(6.0)];
     
 	// Axes
 	CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
 	CPTXYAxis *x		  = axisSet.xAxis;
     //деление
 	x.majorIntervalLength		  = CPTDecimalFromString(@"0.5");
+ 
     //где проходит ось х относительно у
-	x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
+	//x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
     
 	x.minorTicksPerInterval		  = 0;
     
@@ -77,37 +81,26 @@
         
 	CPTXYAxis *y = axisSet.yAxis;
     //деление
-	y.majorIntervalLength		  = CPTDecimalFromString(@"2");
-	y.minorTicksPerInterval		  = 5;
+	y.majorIntervalLength		  = CPTDecimalFromString(@"0.3");
+	y.minorTicksPerInterval		  = 10;
    
 
     
     //где проходит ось у относительно х
-	//y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"2");
+	x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"-2");
     //y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"3");
     
 	// Create a green plot area
     CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
 	CPTScatterPlot *dataSourceLinePlot = [[CPTScatterPlot alloc] init];
-	lineStyle						 = [CPTMutableLineStyle lineStyle];
+	//lineStyle						 = [CPTMutableLineStyle lineStyle];
 	lineStyle.lineWidth				 = 3.f;
-	lineStyle.lineColor				 = [CPTColor greenColor];
-	lineStyle.dashPattern			 = [NSArray arrayWithObjects:[NSNumber numberWithFloat:5.0f], [NSNumber numberWithFloat:5.0f], nil];
+	lineStyle.lineColor				 = [CPTColor redColor];
 	dataSourceLinePlot.dataLineStyle = lineStyle;
 	dataSourceLinePlot.identifier	 = @"Green Plot";
 	dataSourceLinePlot.dataSource	 = self;
     
-    
-    
-    
-	// Put an area gradient under the plot above
-	CPTColor *areaColor		  = [CPTColor colorWithComponentRed:0.3 green:1.0 blue:0.3 alpha:0.8];
-	CPTGradient *areaGradient = [CPTGradient gradientWithBeginningColor:areaColor endingColor:[CPTColor clearColor]];
-    CPTFill *areaGradientFill = [CPTFill fillWithGradient:areaGradient];
-	areaGradient.angle				 = -90.0f;
-	areaGradientFill				 = [CPTFill fillWithGradient:areaGradient];
-	dataSourceLinePlot.areaFill		 = areaGradientFill;
-	dataSourceLinePlot.areaBaseValue = CPTDecimalFromString(@"1.75");
+
     
 	// Animate in the new plot, as an example
 	dataSourceLinePlot.opacity = 0.0f;
@@ -121,19 +114,17 @@
 	[dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];
     
     y.majorGridLineStyle = gridLineStyle;
+    
 	y.labelingPolicy = CPTAxisLabelingPolicyNone;
-    NSInteger majorIncrement = 3;
-	NSInteger minorIncrement = 1;
-	CGFloat yMax = 700.0f;  // should determine dynamically based on max price
+   // NSInteger majorIncrement = 3;
+	//NSInteger minorIncrement = 1;
+	CGFloat yMax = 5.0f;  // should determine dynamically based on max price
 	NSMutableSet *yLabels = [NSMutableSet set];
 	NSMutableSet *yMajorLocations = [NSMutableSet set];
-	for (NSInteger j = minorIncrement; j <= yMax; j += minorIncrement) {
-		//NSUInteger mod = j % majorIncrement;
-		//if (mod == 0) {
+	for (float j=0; j<=yMax; j+=0.5f){
 			NSDecimal location = CPTDecimalFromInteger(j);
 			[yMajorLocations addObject:[NSDecimalNumber decimalNumberWithDecimal:location]];
-            
-		//}
+            NSLog(@"%f",j);
 	}
     
 	y.axisLabels = yLabels;
@@ -165,7 +156,7 @@
 	}
     
 	self.dataForPlot = contentArray;
-   // NSLog(@"%@",dataForPlot);
+  //  NSLog(@"%@",dataForPlot);
     [graph reloadData];
 }
 
