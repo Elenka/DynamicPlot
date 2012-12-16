@@ -10,7 +10,7 @@
 #import "GraphView.h"
 
 @interface SecondViewController : UIViewController{
-    
+    NSMutableArray *graphArray;
 }
 
 @property (strong, nonatomic) GraphView *graphView;
