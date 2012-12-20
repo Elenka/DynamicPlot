@@ -83,9 +83,9 @@
     //деление
 	y.majorIntervalLength		  = CPTDecimalFromString(@"0.3");
 	y.minorTicksPerInterval		  = 10;
-    y.alternatingBandFills = [NSArray arrayWithObjects:[CPTColor redColor], [CPTColor greenColor], nil];
+    y.alternatingBandFills = [NSArray arrayWithObjects:[CPTColor redColor], [CPTColor orangeColor], [CPTColor greenColor], [CPTColor greenColor],[CPTColor orangeColor], [CPTColor redColor], nil];
 
-    CPTFill *bandFill = [CPTFill fillWithColor:[[CPTColor darkGrayColor] colorWithAlphaComponent:0.5]];
+    CPTFill *bandFill = [CPTFill fillWithColor:[[CPTColor darkGrayColor] colorWithAlphaComponent:0.4]];
     [y addBackgroundLimitBand:[CPTLimitBand limitBandWithRange:[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(-1.0) length:CPTDecimalFromDouble(6.0)] fill:bandFill]];
 
     
@@ -98,7 +98,7 @@
 	CPTScatterPlot *dataSourceLinePlot = [[CPTScatterPlot alloc] init];
 	//lineStyle						 = [CPTMutableLineStyle lineStyle];
 	lineStyle.lineWidth				 = 3.f;
-	lineStyle.lineColor				 = [CPTColor redColor];
+	lineStyle.lineColor				 = [CPTColor blackColor];
 	dataSourceLinePlot.dataLineStyle = lineStyle;
 	dataSourceLinePlot.identifier	 = @"Green Plot";
 	dataSourceLinePlot.dataSource	 = self;
@@ -118,7 +118,7 @@
     
     
     CPTMutableLineStyle *gridLineStyle = [CPTMutableLineStyle lineStyle];
-    
+    gridLineStyle.lineColor = [CPTColor blackColor];
     
     
 	y.labelingPolicy = CPTAxisLabelingPolicyNone;
@@ -128,17 +128,11 @@
 	NSMutableSet *yLabels = [NSMutableSet set];
 	NSMutableSet *yMajorLocations = [NSMutableSet set];
 	for (float j=0; j<=yMax; j+=0.5f){
-        if (j==4) {
-            gridLineStyle.lineColor = [CPTColor redColor];
-        }
-        if (j==3) {
-            gridLineStyle.lineColor = [CPTColor greenColor];
-        }
-            y.majorGridLineStyle = gridLineStyle;
+                   y.majorGridLineStyle = gridLineStyle;
 			NSDecimal location = CPTDecimalFromInteger(j);
 			[yMajorLocations addObject:[NSDecimalNumber decimalNumberWithDecimal:location]];
-            NSLog(@"%f",j);
-            gridLineStyle.lineColor = [CPTColor blackColor];
+           // NSLog(@"%f",j);
+            
 	}
     
 	y.axisLabels = yLabels;
@@ -236,7 +230,7 @@
 		else {
 			if ( !negativeStyle ) {
 				CPTMutableTextStyle *newStyle = [axis.labelTextStyle mutableCopy];
-				newStyle.color = [CPTColor redColor];
+				newStyle.color = [CPTColor blackColor];
 				negativeStyle  = newStyle;
 			}
 			theLabelTextStyle = negativeStyle;
