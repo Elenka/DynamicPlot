@@ -7,12 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
-#define GRAPH_HEIGHT self.frame.size.height
-#define GRAPH_WIDTH self.frame.size.width
-#define OFFSET_X 10.0f // Offset x, set this to higher if you want more space at the side.
-#define OFFSET_Y 10.0f // Offset y, set this to higher if you want more space at the bottom.
-#define STEP_X 30.0f // Width of cells.
-#define STEP_Y 20.0f // Height of cells.
+#define GRAPH_HEIGHT 400
+#define GRAPH_WIDTH 700
+#define OFFSET_X 30.0f // Offset x, set this to higher if you want more space at the side.
+#define OFFSET_Y 30.0f // Offset y, set this to higher if you want more space at the bottom.
+#define STEP_X 10.0f // Width of cells.
+#define STEP_Y 10.0f // Height of cells.
 #define GRAPH_TOP 0.0f 
 #define CIRCLE_RADIUS 1.5f // Radius og dots on the graph.
 #define GRADIENT_FILL {0.12f, 0.12f, 0.12f, 0.9f, 0.12f, 0.12f, 0.12f, 1.0f}; // Set Gradient of choice!

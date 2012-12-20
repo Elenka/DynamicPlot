@@ -27,7 +27,6 @@
 		5303CBF716317ED100BB7F93 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5303CBF616317ED100BB7F93 /* QuartzCore.framework */; };
 		5354893F166CE3C1000506E1 /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5354893C166CE3C1000506E1 /* GraphView.m */; };
 		53548940166CE3C1000506E1 /* GraphViewCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5354893E166CE3C1000506E1 /* GraphViewCore.m */; };
-		5379C1F7167DD41E00BAD362 /* CorePlotTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5379C1F6167DD41E00BAD362 /* CorePlotTestViewController.m */; };
 		5384DBD616624C0300901DE2 /* graphback.png in Resources */ = {isa = PBXBuildFile; fileRef = 5384DBD516624C0300901DE2 /* graphback.png */; };
 /* End PBXBuildFile section */
 
@@ -139,8 +138,6 @@
 		5354893C166CE3C1000506E1 /* GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphView.m; sourceTree = "<group>"; };
 		5354893D166CE3C1000506E1 /* GraphViewCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewCore.h; sourceTree = "<group>"; };
 		5354893E166CE3C1000506E1 /* GraphViewCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewCore.m; sourceTree = "<group>"; };
-		5379C1F5167DD41E00BAD362 /* CorePlotTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorePlotTestViewController.h; sourceTree = "<group>"; };
-		5379C1F6167DD41E00BAD362 /* CorePlotTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CorePlotTestViewController.m; sourceTree = "<group>"; };
 		5384DBD516624C0300901DE2 /* graphback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graphback.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -191,8 +188,6 @@
 		5303CB6B163055B300BB7F93 /* DynamicPlot */ = {
 			isa = PBXGroup;
 			children = (
-				5379C1F5167DD41E00BAD362 /* CorePlotTestViewController.h */,
-				5379C1F6167DD41E00BAD362 /* CorePlotTestViewController.m */,
 				5354893A166CE3C1000506E1 /* Source */,
 				5303CB9316306B8100BB7F93 /* CorePlotHeaders */,
 				5303CBE316306B8100BB7F93 /* libCorePlot-CocoaTouch.a */,
@@ -402,7 +397,6 @@
 				5303CB89163055B300BB7F93 /* SecondViewController.m in Sources */,
 				5354893F166CE3C1000506E1 /* GraphView.m in Sources */,
 				53548940166CE3C1000506E1 /* GraphViewCore.m in Sources */,
-				5379C1F7167DD41E00BAD362 /* CorePlotTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

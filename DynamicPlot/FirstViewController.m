@@ -38,8 +38,8 @@
     NSLog(@"---graph View");
     
     hostingView = (CPTGraphHostingView *) GraphView;
-  //!!  hostingView.allowPinchScaling = NO;
-  //!!  hostingView.userInteractionEnabled = NO;
+    //!!hostingView.allowPinchScaling = NO;
+    ///!!hostingView.userInteractionEnabled = NO;
     
     graph = [[CPTXYGraph alloc] initWithFrame:hostingView.bounds];
 	CPTTheme *theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
@@ -76,14 +76,17 @@
     
 	x.minorTicksPerInterval		  = 0;
     
-    CPTMutableLineStyle *gridLineStyle = [CPTMutableLineStyle lineStyle];
+   
     
         
 	CPTXYAxis *y = axisSet.yAxis;
     //деление
 	y.majorIntervalLength		  = CPTDecimalFromString(@"0.3");
 	y.minorTicksPerInterval		  = 10;
-   
+    y.alternatingBandFills = [NSArray arrayWithObjects:[CPTColor redColor], [CPTColor greenColor], nil];
+
+    CPTFill *bandFill = [CPTFill fillWithColor:[[CPTColor darkGrayColor] colorWithAlphaComponent:0.5]];
+    [y addBackgroundLimitBand:[CPTLimitBand limitBandWithRange:[CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(-1.0) length:CPTDecimalFromDouble(6.0)] fill:bandFill]];
 
     
     //где проходит ось у относительно х
@@ -113,7 +116,10 @@
 	fadeInAnimation.toValue				= [NSNumber numberWithFloat:1.0];
 	[dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];
     
-    y.majorGridLineStyle = gridLineStyle;
+    
+    CPTMutableLineStyle *gridLineStyle = [CPTMutableLineStyle lineStyle];
+    
+    
     
 	y.labelingPolicy = CPTAxisLabelingPolicyNone;
    // NSInteger majorIncrement = 3;
@@ -122,9 +128,17 @@
 	NSMutableSet *yLabels = [NSMutableSet set];
 	NSMutableSet *yMajorLocations = [NSMutableSet set];
 	for (float j=0; j<=yMax; j+=0.5f){
+        if (j==4) {
+            gridLineStyle.lineColor = [CPTColor redColor];
+        }
+        if (j==3) {
+            gridLineStyle.lineColor = [CPTColor greenColor];
+        }
+            y.majorGridLineStyle = gridLineStyle;
 			NSDecimal location = CPTDecimalFromInteger(j);
 			[yMajorLocations addObject:[NSDecimalNumber decimalNumberWithDecimal:location]];
             NSLog(@"%f",j);
+            gridLineStyle.lineColor = [CPTColor blackColor];
 	}
     
 	y.axisLabels = yLabels;
